@@ -102,7 +102,7 @@ For each feature:
 - shortName: 2-4 words (e.g., "User Auth", "Data Export", "Search")
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 user goals (e.g., "Find items quickly", "Resume later")
+- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"
 
 Order by build priority. Be concise.`,
 		schema: z.object({
@@ -164,7 +164,7 @@ Regenerate this feature. Write like a PM who trusts their developer.
 - shortName: 2-4 words
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 user goals`,
+- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
@@ -218,7 +218,7 @@ Generate this feature. Write like a PM who trusts their developer.
 - shortName: 2-4 words
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 user goals`,
+- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
