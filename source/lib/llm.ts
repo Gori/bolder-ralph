@@ -104,7 +104,7 @@ For each feature:
 - shortName: 2-4 words (e.g., "User Auth", "Data Export", "Search")
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"
+- userStories: User stories covering ALL functionality of this feature. Format: "As a [user], I want [action] so that [benefit]". Simple features may need 1 story, complex features may need 5+. Be thorough.
 
 Order by build priority. Be concise.`,
 		schema: z.object({
@@ -166,7 +166,7 @@ Regenerate this feature. Write like a PM who trusts their developer.
 - shortName: 2-4 words
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"`,
+- userStories: User stories covering ALL functionality. Format: "As a [user], I want [action] so that [benefit]". Be thorough - include every distinct user action this feature enables.`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
@@ -220,7 +220,7 @@ Generate this feature. Write like a PM who trusts their developer.
 - shortName: 2-4 words
 - description: ONE sentence - what can the user do?
 - purpose: ONE sentence - why does this matter?
-- userStories: 1-2 proper user stories in format "As a [user], I want [action] so that [benefit]"`,
+- userStories: User stories covering ALL functionality. Format: "As a [user], I want [action] so that [benefit]". Be thorough - include every distinct user action this feature enables.`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
