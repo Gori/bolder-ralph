@@ -70,7 +70,7 @@ export default function CoreDefinitionsEditor({
 
 	const currentField = fieldOrder[currentFieldIndex];
 
-	// Auto-advance to first empty field
+	// Auto-advance to first empty field, or to Continue if all filled
 	useEffect(() => {
 		if (!isLoading && options && !isEditing) {
 			const firstEmptyIndex = fieldOrder.findIndex(
@@ -79,6 +79,9 @@ export default function CoreDefinitionsEditor({
 			if (firstEmptyIndex >= 0) {
 				setCurrentFieldIndex(firstEmptyIndex);
 				setIsEditing(true);
+			} else {
+				// All fields filled, cursor to Continue
+				setCurrentFieldIndex(fieldOrder.length);
 			}
 		}
 	}, [isLoading, options, definitions, isEditing]);
