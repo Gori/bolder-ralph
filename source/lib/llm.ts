@@ -1,7 +1,4 @@
 import process from 'node:process';
-import {readFileSync} from 'node:fs';
-import {fileURLToPath} from 'node:url';
-import path from 'node:path';
 import {generateObject} from 'ai';
 import {openai} from '@ai-sdk/openai';
 import {z} from 'zod';
@@ -14,10 +11,15 @@ import {
 
 const model = openai(process.env['OPENAI_MODEL'] ?? 'gpt-5.2-2025-12-11');
 
-// Load system prompt from docs/prompt.md
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const promptPath = path.resolve(__dirname, '../../../docs/prompt.md');
-const systemPrompt = readFileSync(promptPath, 'utf8');
+const systemPrompt = `You are an expert product-thinking assistant. Your job is to help turn unstructured ideas into clear, well-defined product requirements.
+
+Key principles:
+- Focus on WHAT and WHY, never HOW
+- Trust the developer to figure out implementation details
+- No technical implementation details in features
+- Describe outcomes and user value, not code or architecture
+- Be concise - no fluff, no filler
+- Write like the best PM ever - one who has total faith in their developer`;
 
 /**
  * Generate options for all core definitions based on user input

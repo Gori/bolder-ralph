@@ -1,6 +1,65 @@
-import {type PrdContent} from './types.js';
+import {type PrdContent, type OutputFormat} from './types.js';
 
-export function formatPrd(prd: PrdContent): string {
+function escapeCsv(value: string): string {
+	if (value.includes(',') || value.includes('"') || value.includes('\n')) {
+		return `"${value.replace(/"/g, '""')}"`;
+	}
+	return value;
+}
+
+export function formatPrdAsJson(prd: PrdContent): string {
+	return JSON.stringify(prd, null, 2);
+}
+
+export function formatPrdAsToon(prd: PrdContent): string {
+	const lines: string[] = [
+		`ideaName: ${prd.ideaName}`,
+		`overallIdea: ${prd.overallIdea}`,
+		`purpose: ${prd.purpose}`,
+		`audience: ${prd.audience}`,
+		`productType: ${prd.productType}`,
+		`definitionOfDone: ${prd.definitionOfDone}`,
+		'',
+		`techStack[${prd.techStack.length}]{category,technology}:`,
+	];
+
+	for (const item of prd.techStack) {
+		lines.push(`  ${escapeCsv(item.category)},${escapeCsv(item.technology)}`);
+	}
+
+	lines.push('', `features[${prd.features.length}]{shortName,description,purpose,userStories}:`);
+
+	for (const feature of prd.features) {
+		const stories = feature.userStories.join('|');
+		lines.push(
+			`  ${escapeCsv(feature.shortName)},${escapeCsv(feature.description)},${escapeCsv(feature.purpose)},${escapeCsv(stories)}`,
+		);
+	}
+
+	lines.push('', `nonFeatures[${prd.nonFeatures.length}]:`);
+	for (const item of prd.nonFeatures) {
+		lines.push(`  ${escapeCsv(item)}`);
+	}
+
+	lines.push('', `constraints[${prd.constraints.length}]:`);
+	for (const item of prd.constraints) {
+		lines.push(`  ${escapeCsv(item)}`);
+	}
+
+	return lines.join('\n');
+}
+
+export function formatPrd(prd: PrdContent, format: OutputFormat = 'markdown'): string {
+	if (format === 'json') {
+		return formatPrdAsJson(prd);
+	}
+	if (format === 'toon') {
+		return formatPrdAsToon(prd);
+	}
+	return formatPrdAsMarkdown(prd);
+}
+
+export function formatPrdAsMarkdown(prd: PrdContent): string {
 	const lines: string[] = [
 		`# ${prd.ideaName}`,
 		'',

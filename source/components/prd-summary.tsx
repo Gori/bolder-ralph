@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {Box, Text, useInput} from 'ink';
 import Spinner from 'ink-spinner';
-import {type PrdContent} from '../lib/types.js';
+import {type PrdContent, type OutputFormat} from '../lib/types.js';
+import {formatPrd} from '../lib/prd-formatter.js';
 
 type Props = {
 	readonly prd: PrdContent | undefined;
 	readonly isLoading: boolean;
 	readonly isSaving: boolean;
 	readonly outputPath: string;
+	readonly format: OutputFormat;
 	readonly onSave: () => void;
 	readonly onBack: () => void;
 };
@@ -17,10 +19,11 @@ export default function PrdSummary({
 	isLoading,
 	isSaving,
 	outputPath,
+	format,
 	onSave,
 	onBack,
 }: Props) {
-	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [selectedIndex, setSelectedIndex] = useState(1); // Default to Save
 
 	// Options: "Go Back" and "Save PRD"
 	const options = ['Go Back', 'Save PRD'];
@@ -77,52 +80,16 @@ export default function PrdSummary({
 		);
 	}
 
+	const formattedPrd = formatPrd(prd, format);
+
 	return (
 		<Box flexDirection="column" paddingX={1}>
 			<Text bold color="cyan">
-				PRD Summary
-			</Text>
-			<Text dimColor color="gray">
-				Review your product requirements document
+				Your PRD ({format})
 			</Text>
 
 			<Box marginTop={1} flexDirection="column">
-				{/* Idea Name */}
-				<Box marginBottom={1}>
-					<Text bold color="yellow">
-						{prd.ideaName}
-					</Text>
-				</Box>
-
-				{/* Overall Idea */}
-				<Box flexDirection="column" marginBottom={1}>
-					<Text color="gray">What it is:</Text>
-					<Text>{prd.overallIdea}</Text>
-				</Box>
-
-				{/* Purpose */}
-				<Box flexDirection="column" marginBottom={1}>
-					<Text color="gray">Purpose:</Text>
-					<Text>{prd.purpose}</Text>
-				</Box>
-
-				{/* Audience */}
-				<Box flexDirection="column" marginBottom={1}>
-					<Text color="gray">Audience:</Text>
-					<Text>{prd.audience}</Text>
-				</Box>
-
-				{/* Product Type */}
-				<Box flexDirection="column" marginBottom={1}>
-					<Text color="gray">Type:</Text>
-					<Text>{prd.productType}</Text>
-				</Box>
-
-				{/* Features count */}
-				<Box flexDirection="column" marginBottom={1}>
-					<Text color="gray">Features:</Text>
-					<Text color="green">{prd.features.length} features defined</Text>
-				</Box>
+				<Text>{formattedPrd}</Text>
 			</Box>
 
 			{/* Actions */}

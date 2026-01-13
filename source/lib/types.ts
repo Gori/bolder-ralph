@@ -1,3 +1,6 @@
+// Output format options
+export type OutputFormat = 'markdown' | 'json' | 'toon';
+
 // App phases - new flow
 export type AppPhase =
 	| 'main-question'

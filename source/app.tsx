@@ -14,6 +14,7 @@ import {
 	type CoreDefinitionOptions,
 	type Feature,
 	type PrdContent,
+	type OutputFormat,
 } from './lib/types.js';
 import {
 	generateCoreDefinitionOptions,
@@ -34,6 +35,7 @@ const steps = [
 
 type Props = {
 	readonly outputPath?: string;
+	readonly format?: OutputFormat;
 };
 
 function getStepIndex(phase: AppPhase): number {
@@ -73,7 +75,7 @@ const emptyDefinitions: CoreDefinitions = {
 	productType: '',
 };
 
-export default function App({outputPath = 'prd-output.md'}: Props) {
+export default function App({outputPath = 'prd-output.md', format = 'markdown'}: Props) {
 	const {exit} = useApp();
 	const {stdout} = useStdout();
 
@@ -260,8 +262,8 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 
 		setIsSaving(true);
 		try {
-			const markdown = formatPrd(prd);
-			await fs.writeFile(outputPath, markdown, 'utf8');
+			const content = formatPrd(prd, format);
+			await fs.writeFile(outputPath, content, 'utf8');
 			setPhase('complete');
 		} catch (error_: unknown) {
 			setError(error_ instanceof Error ? error_.message : 'Failed to save PRD');
@@ -310,8 +312,6 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 	};
 
 	const terminalHeight = stdout?.rows ?? 24;
-	const inputAreaHeight = 14;
-	const historyHeight = Math.max(terminalHeight - inputAreaHeight - 2, 8);
 
 	// Render current input based on phase
 	const renderInput = () => {
@@ -366,6 +366,7 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 						isLoading={isLoadingPrd}
 						isSaving={isSaving}
 						outputPath={outputPath}
+						format={format}
 						onSave={handleSave}
 						onBack={goBack}
 					/>
@@ -396,14 +397,11 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 
 	return (
 		<Box flexDirection="column" height={terminalHeight}>
-			{/* Header and stepper area */}
-			<Box flexDirection="column" height={historyHeight} overflow="hidden">
+			{/* History area - scrolls up like chat */}
+			<Box flexDirection="column" flexGrow={1} overflow="hidden">
 				<Header />
-				<Box marginTop={1}>
-					<Stepper currentStep={getStepIndex(phase)} steps={[...steps]} />
-				</Box>
 				{/* Show completed context */}
-				<Box marginTop={1} flexDirection="column">
+				<Box marginTop={1} flexDirection="column" paddingX={1}>
 					{mainQuestion && (
 						<Text>
 							<Text color="gray">Idea: </Text>
@@ -470,8 +468,13 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 				<Text dimColor>{'─'.repeat(stdout?.columns ?? 80)}</Text>
 			</Box>
 
-			{/* Input area */}
-			<Box flexDirection="column">{renderInput()}</Box>
+			{/* Bottom area - stepper and input */}
+			<Box flexDirection="column">
+				<Box marginBottom={1}>
+					<Stepper currentStep={getStepIndex(phase)} steps={[...steps]} />
+				</Box>
+				{renderInput()}
+			</Box>
 		</Box>
 	);
 }

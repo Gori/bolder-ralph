@@ -11,13 +11,13 @@
 		"build": "tsc",
 		"dev": "tsc --watch",
 		"test": "prettier --check . && xo && ava",
-		"package": "npm run build && pkg . --out-path bin",
-		"package:mac": "npm run build && pkg . --targets node18-macos-x64,node18-macos-arm64 --out-path bin",
-		"package:linux": "npm run build && pkg . --targets node18-linux-x64,node18-linux-arm64 --out-path bin",
-		"package:win": "npm run build && pkg . --targets node18-win-x64 --out-path bin"
+		"bundle": "npm run build && esbuild dist/source/cli.js --bundle --platform=node --target=node18 --outfile=dist/bundle.cjs --format=cjs --loader:.node=file",
+		"package": "npm run bundle && pkg dist/bundle.cjs --out-path bin --targets node18-macos-arm64,node18-macos-x64,node18-linux-x64,node18-win-x64",
+		"package:mac": "npm run bundle && pkg dist/bundle.cjs --targets node18-macos-x64,node18-macos-arm64 --out-path bin",
+		"package:linux": "npm run bundle && pkg dist/bundle.cjs --targets node18-linux-x64,node18-linux-arm64 --out-path bin",
+		"package:win": "npm run bundle && pkg dist/bundle.cjs --targets node18-win-x64 --out-path bin"
 	},
 	"pkg": {
-		"scripts": "dist/**/*.js",
 		"assets": [
 			"docs/**/*"
 		]
@@ -46,11 +46,11 @@
 		"@vdemedes/prettier-config": "^2.0.1",
 		"ava": "^5.2.0",
 		"chalk": "^5.2.0",
+		"esbuild": "^0.27.2",
 		"eslint-config-xo-react": "^0.27.0",
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"ink-testing-library": "^3.0.0",
-		"pkg": "^5.8.1",
 		"prettier": "^2.8.7",
 		"ts-node": "^10.9.1",
 		"tsx": "^4.21.0",
