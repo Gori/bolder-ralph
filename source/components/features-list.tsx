@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Box, Text, useInput} from 'ink';
 import Spinner from 'ink-spinner';
 import {type Feature} from '../lib/types.js';
@@ -31,6 +31,13 @@ export default function FeaturesList({
 
 	// List items: features + "Add new" + "Continue"
 	const totalItems = features.length + 2;
+
+	// Default cursor to Continue when features are loaded
+	useEffect(() => {
+		if (!isLoading && features.length > 0 && mode === 'list') {
+			setSelectedIndex(features.length + 1); // Continue position
+		}
+	}, [isLoading, features.length, mode]);
 
 	useInput((input, key) => {
 		if (mode !== 'list' || isLoading) return;
