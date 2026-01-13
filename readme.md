@@ -119,10 +119,10 @@ Users see rendered docs as they write.
 
 ### Environment Variables
 
-| Variable         | Description         | Default    |
-| ---------------- | ------------------- | ---------- |
-| `OPENAI_API_KEY` | Your OpenAI API key | (required) |
-| `OPENAI_MODEL`   | Model to use        | `gpt-4o`   |
+| Variable         | Description         | Default              |
+| ---------------- | ------------------- | -------------------- |
+| `OPENAI_API_KEY` | Your OpenAI API key | (required)           |
+| `OPENAI_MODEL`   | Model to use        | `gpt-4.1-2025-04-14` |
 
 ### CLI Options
 
