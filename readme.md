@@ -31,7 +31,7 @@
 ⠀⠀⠀⠀⠀⠉⠛⠲⠤⠤⢤⣤⣄⣀⣀⣀⣀⡸⠇⠀⠀⠀⠉⠉⠉⠉⠉⠉⠁⠀
 ```
 
-*"Me fail English? That's unpossible!"*
+*"It says bee and there's a picture of a bee on it!"*
 
 **Turn your brain dump into a PRD in 2 minutes.**
 
