@@ -33,11 +33,13 @@
 
 *"Me fail English? That's unpossible!"*
 
-**Brain dump → PRD in 2 minutes**
+**Turn your brain dump into a PRD in 2 minutes.**
 
 </div>
 
----
+## What is Ralph?
+
+Ralph is a CLI tool for developers and founders who have product ideas but hate writing specs. Describe what you want to build, and Ralph generates a structured PRD with features, user stories, and constraints — ready to hand off to development.
 
 ## Quick Start
 
@@ -47,64 +49,49 @@ echo "OPENAI_API_KEY=your-key" > .env
 node dist/source/cli.js
 ```
 
----
-
 ## How It Works
 
-```
-┌───────────────────────────────────────────────────────────────────────────────┐
-│                                                                               │
-│   ① IDEA         "What do you want to build?"                                 │
-│                   One sentence. Don't overthink it.                           │
-│                                                                               │
-│   ② DETAILS      Dump everything else from your brain.                        │
-│                   Constraints, audience, tech preferences, vibes.             │
-│                                                                               │
-│   ③ DEFINE       Ralph suggests names, descriptions, audience.                │
-│                   Pick one or write your own.                                 │
-│                                                                               │
-│   ④ FEATURES     Review the feature list.                                     │
-│                   Edit, delete, regenerate, add more.                         │
-│                                                                               │
-│   ⑤ DONE         Export your PRD and go build something.                      │
-│                   Markdown, JSON, or TOON format.                             │
-│                                                                               │
-└───────────────────────────────────────────────────────────────────────────────┘
-```
-
----
+| Step | What You Do | What Ralph Does |
+|:-----|:------------|:----------------|
+| **Idea** | Describe your product in one sentence | — |
+| **Details** | Brain dump everything else (audience, constraints, preferences) | — |
+| **Define** | Pick or customize | Generates 3 options each for name, description, purpose, audience, product type |
+| **Features** | Review, edit, delete, add | Generates feature list with descriptions and user stories |
+| **Export** | Save | Outputs PRD in your chosen format |
 
 ## Output Formats
 
+| Format | Flag | Use Case |
+|:-------|:-----|:---------|
+| Markdown | `--format=markdown` (default) | Human-readable docs, GitHub, Notion |
+| JSON | `--format=json` | Programmatic access, integrations |
+| [TOON](https://github.com/toon-format/toon) | `--format=toon` | Token-efficient LLM input |
+
 ```bash
-ralph                       # → prd-output.md
-ralph --format=json         # → prd-output.json
-ralph --format=toon         # → prd-output.toon
-ralph -o=my-product.md      # custom filename
+node dist/source/cli.js                        # prd-output.md
+node dist/source/cli.js --format=json          # prd-output.json
+node dist/source/cli.js -o=my-product.md       # custom filename
 ```
 
----
+## What's in a PRD?
 
-## Philosophy
+Ralph generates PRDs focused on **what** and **why**, never **how**. Implementation details are the developer's job.
 
-PRDs written like a PM who trusts their developers:
+| Section | Description |
+|:--------|:------------|
+| Core definitions | Name, description, purpose, audience, product type |
+| Features | Short name, description, purpose, user stories (as many as needed per feature) |
+| Tech stack | Suggested technologies by category |
+| Non-features | What the product explicitly won't do |
+| Constraints | Hard limits and rules |
+| Definition of done | Minimum viable outcome for v1 |
 
-```
-WHAT and WHY     →     Never how. That's your job.
-NO FLUFF         →     Every word earns its place.
-OUTCOMES         →     Features describe what users can do.
-```
+## Configuration
 
----
-
-## Config
-
-| Variable | Default |
-|:---------|:--------|
-| `OPENAI_API_KEY` | required |
-| `OPENAI_MODEL` | `gpt-5.2-2025-12-11` |
-
----
+| Variable | Default | Description |
+|:---------|:--------|:------------|
+| `OPENAI_API_KEY` | required | Your OpenAI API key |
+| `OPENAI_MODEL` | `gpt-5.2-2025-12-11` | Model to use for generation |
 
 ## Development
 
