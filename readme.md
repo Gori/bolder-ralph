@@ -29,70 +29,99 @@
 ⠀⠀⠀⠀⠀⠉⠛⠲⠤⠤⢤⣤⣄⣀⣀⣀⣀⡸⠇⠀⠀⠀⠉⠉⠉⠉⠉⠉⠁⠀
 ```
 
-> "Me fail English? That's unpossible!"
+> *"Me fail English? That's unpossible!"*
 
----
+<br>
 
-You know that feeling when you have an amazing idea but turning it into something buildable feels like pulling teeth? Yeah. Ralph fixes that.
+## What is this?
 
-**Ralph turns your chaotic brain dump into a clean PRD in about 2 minutes.**
+**Brain dump → PRD in 2 minutes.**
 
-No templates. No forms. Just tell Ralph what you want to build, and he'll ask the right questions, suggest names and features, and spit out a proper product spec that any developer can run with.
+Ralph is a CLI that turns your messy product ideas into structured requirements documents. Tell it what you want to build, answer a few questions, and get a PRD ready for development.
 
-## Get Started
+<br>
 
-**Option 1: Standalone executable (no Node.js required)**
-
-```bash
-npm install && npm run package:mac  # or package:linux, package:win
-export OPENAI_API_KEY=your-key
-./bin/bolder-ralph
-```
-
-**Option 2: Run with Node.js**
+## Quick Start
 
 ```bash
+# Install
 npm install && npm run build
-cp .env.example .env  # add your OpenAI key
+
+# Configure
+echo "OPENAI_API_KEY=your-key" > .env
+
+# Run
 node dist/source/cli.js
 ```
 
-That's it. Ralph will take it from there.
+<br>
 
-## What Happens
+## How It Works
 
-1. **"What do you want to build?"** — One sentence. Don't overthink it.
-2. **Brain dump** — Everything else. Tech preferences, audience, constraints, whatever.
-3. **Define it** — Ralph suggests names, descriptions, audience. Pick one or write your own.
-4. **Features** — AI-generated feature list. Edit, delete, regenerate, add more.
-5. **Done** — Save your PRD and go build something.
+```
+┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│   1. IDEA        "What do you want to build?"               │
+│                  One sentence. Keep it simple.              │
+│                                                             │
+│   2. DETAILS     Brain dump everything else.                │
+│                  Constraints, audience, preferences.        │
+│                                                             │
+│   3. DEFINE      Pick from AI-generated options:            │
+│                  Name, description, purpose, audience.      │
+│                                                             │
+│   4. FEATURES    Review the feature list.                   │
+│                  Edit, delete, regenerate, add more.        │
+│                                                             │
+│   5. SAVE        Export your PRD.                           │
+│                  Markdown, JSON, or TOON format.            │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
-## The Philosophy
+<br>
 
-Ralph writes PRDs like a PM who actually trusts their developers:
+## Output Formats
 
-- **WHAT and WHY** — Never how. That's the dev's job.
-- **No fluff** — Every word earns its place.
-- **Outcomes over implementation** — Features describe what users can do, not how the code works.
+```bash
+node dist/source/cli.js                        # markdown (default)
+node dist/source/cli.js --format=json          # json
+node dist/source/cli.js --format=toon          # toon
+node dist/source/cli.js -o=my-prd.md           # custom filename
+```
+
+<br>
+
+## Philosophy
+
+Ralph writes PRDs like a PM who trusts their developers:
+
+| Principle | Meaning |
+|-----------|---------|
+| **WHAT and WHY** | Never how. Implementation is the dev's job. |
+| **No fluff** | Every word earns its place. |
+| **Outcomes** | Features describe what users can do. |
+
+<br>
 
 ## Config
 
-| Variable         | Default              |
-| ---------------- | -------------------- |
-| `OPENAI_API_KEY` | (required)           |
-| `OPENAI_MODEL`   | `gpt-5.2-2025-12-11` |
+| Variable | Default |
+|----------|---------|
+| `OPENAI_API_KEY` | required |
+| `OPENAI_MODEL` | `gpt-5.2-2025-12-11` |
+
+<br>
+
+## Development
 
 ```bash
-node dist/source/cli.js --output=my-prd.md
+npm run dev      # watch mode
+npm test         # prettier + xo + ava
 ```
 
-## Dev
-
-```bash
-npm run dev    # watch mode
-npm test       # prettier + xo + ava
-```
+<br>
 
 ---
 
-MIT. Named after Ralph Wiggum, who also turns chaos into... something.
+<sub>MIT License. Named after Ralph Wiggum.</sub>
