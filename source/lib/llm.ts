@@ -41,15 +41,15 @@ ${brainDump || 'No additional details provided.'}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Generate 3 options for each core definition. Be CONCISE - no fluff, no filler words.
+Generate 3 DISTINCT options for each core definition. Be CONCISE - no fluff.
 
-1. Idea Name - 1-3 words, catchy and memorable
-2. Overall Idea - ONE short sentence, what is it?
-3. Purpose - ONE short sentence, why build it?
-4. Audience - 3-6 words describing who it's for
-5. Product Type - e.g., "web app", "CLI tool", "mobile app", "API service"
+1. Idea Name - 1-3 words, catchy and memorable. Make each option different.
+2. Overall Idea - ONE short sentence. Vary the angle/framing.
+3. Purpose - ONE short sentence. Different perspectives on why it matters.
+4. Audience - 3-6 words. Option 1 = most obvious, options 2-3 = alternative audiences.
+5. Product Type - Option 1 = what user specified (if any), options 2-3 = viable alternatives (e.g., if user said "mobile app", suggest "web app" and "PWA" as alternatives).
 
-First option = best recommendation. Keep it punchy and clear.`,
+IMPORTANT: All 3 options must be DIFFERENT from each other. No duplicates.`,
 		schema: z.object({
 			ideaName: z.array(z.string()).length(3),
 			overallIdea: z.array(z.string()).length(3),
