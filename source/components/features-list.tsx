@@ -161,20 +161,13 @@ export default function FeaturesList({
 				{features.map((feature, index) => {
 					const isSelected = index === selectedIndex;
 					return (
-						<Box key={feature.id} flexDirection="column" marginBottom={1}>
-							<Box>
-								<Text color={isSelected ? 'cyan' : 'gray'}>
-									{isSelected ? '❯ ' : '  '}
-								</Text>
-								<Text color={isSelected ? 'white' : 'gray'} bold={isSelected}>
-									{feature.shortName}
-								</Text>
-							</Box>
-							<Box marginLeft={4}>
-								<Text dimColor color="gray">
-									{feature.description}
-								</Text>
-							</Box>
+						<Box key={feature.id}>
+							<Text color={isSelected ? 'cyan' : 'gray'}>
+								{isSelected ? '❯ ' : '  '}
+							</Text>
+							<Text color={isSelected ? 'white' : 'gray'} bold={isSelected}>
+								{feature.shortName}
+							</Text>
 						</Box>
 					);
 				})}

@@ -41,15 +41,15 @@ ${brainDump || 'No additional details provided.'}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Based on the user's input, generate 3 options for each of these core product definitions.
-Each option should be 1-2 sentences maximum. Make them distinct but all reasonable.
-The first option should be the best/recommended one.
+Generate 3 options for each core definition. Be CONCISE - no fluff, no filler words.
 
-1. Idea Name - A short, memorable name for the product
-2. Overall Idea - What is this product? (noun-based definition)
-3. Purpose - Why does this product need to exist?
-4. Audience - Who is this for?
-5. Product Type - What kind of digital product is this? (e.g., web app, mobile app, CLI tool, backend service, browser extension, etc.)`,
+1. Idea Name - 1-3 words, catchy and memorable
+2. Overall Idea - ONE short sentence, what is it?
+3. Purpose - ONE short sentence, why build it?
+4. Audience - 3-6 words describing who it's for
+5. Product Type - e.g., "web app", "CLI tool", "mobile app", "API service"
+
+First option = best recommendation. Keep it punchy and clear.`,
 		schema: z.object({
 			ideaName: z.array(z.string()).length(3),
 			overallIdea: z.array(z.string()).length(3),
@@ -91,15 +91,15 @@ ${brainDump || 'None'}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Based on all the information above, generate a comprehensive list of features for this product.
-Include both features explicitly mentioned by the user AND features needed to complete the user's intent.
-Order them by build priority (most important/foundational first).
+Generate features for this product. Be CONCISE. Order by build priority.
 
-For each feature provide:
-- shortName: A brief, descriptive name (2-5 words)
-- description: What this feature does (1-2 sentences)
-- purpose: Why this feature exists / what problem it solves
-- userStories: 1-3 user stories or goals this feature addresses`,
+For each feature:
+- shortName: 2-4 words, clear and specific (e.g., "User Auth", "Data Export", "Search Filters")
+- description: ONE sentence, what does it do?
+- purpose: ONE sentence, why is it needed?
+- userStories: 1-2 short user goals (e.g., "Save work in progress", "Filter by date")
+
+No fluff. No filler. Just the essentials.`,
 		schema: z.object({
 			features: z.array(
 				z.object({
@@ -152,7 +152,13 @@ Current feature to regenerate:
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Regenerate this feature with a fresh perspective. Keep the general concept but improve the description, purpose, and user stories.`,
+Regenerate this feature. Keep it CONCISE:
+- shortName: 2-4 words
+- description: ONE sentence
+- purpose: ONE sentence
+- userStories: 1-2 short goals
+
+No fluff.`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
@@ -199,7 +205,13 @@ New feature name provided by user: ${shortName}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Based on the feature name provided, generate the full feature details that fit the product context.`,
+Generate this feature. Keep it CONCISE:
+- shortName: 2-4 words
+- description: ONE sentence
+- purpose: ONE sentence
+- userStories: 1-2 short goals
+
+No fluff.`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
@@ -249,14 +261,12 @@ ${features
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Generate a complete PRD based on all the information above.
-Use the exact features provided - do not add or remove features.
+Generate PRD details. Be CONCISE - no fluff.
 
-Include:
-1. Tech Stack - Appropriate technologies for the product type
-2. Non-Features - What this product will NOT do (important boundaries)
-3. Constraints - Hard limits and rules
-4. Definition of Done - Minimum acceptable outcome for v1`,
+1. Tech Stack - list specific technologies (e.g., "React", "PostgreSQL", "Node.js")
+2. Non-Features - 3-5 short statements of what this WON'T do
+3. Constraints - 3-5 hard limits/rules, one sentence each
+4. Definition of Done - 2-3 sentences, minimum viable outcome for v1`,
 		schema: z.object({
 			techStack: z.array(
 				z.object({
