@@ -402,7 +402,7 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 				<Box marginTop={1}>
 					<Stepper currentStep={getStepIndex(phase)} steps={[...steps]} />
 				</Box>
-				{/* Show current context */}
+				{/* Show completed context */}
 				<Box marginTop={1} flexDirection="column">
 					{mainQuestion && (
 						<Text>
@@ -410,11 +410,55 @@ export default function App({outputPath = 'prd-output.md'}: Props) {
 							<Text color="white">{mainQuestion}</Text>
 						</Text>
 					)}
+					{brainDump && (
+						<Text>
+							<Text color="gray">Details: </Text>
+							<Text color="white">
+								{brainDump.length > 60
+									? brainDump.slice(0, 60) + '...'
+									: brainDump}
+							</Text>
+						</Text>
+					)}
 					{definitions.ideaName && (
 						<Text>
 							<Text color="gray">Name: </Text>
 							<Text bold color="yellow">
 								{definitions.ideaName}
+							</Text>
+						</Text>
+					)}
+					{definitions.overallIdea && (
+						<Text>
+							<Text color="gray">What: </Text>
+							<Text color="white">{definitions.overallIdea}</Text>
+						</Text>
+					)}
+					{definitions.purpose && (
+						<Text>
+							<Text color="gray">Why: </Text>
+							<Text color="white">{definitions.purpose}</Text>
+						</Text>
+					)}
+					{definitions.audience && (
+						<Text>
+							<Text color="gray">For: </Text>
+							<Text color="white">{definitions.audience}</Text>
+						</Text>
+					)}
+					{definitions.productType && (
+						<Text>
+							<Text color="gray">Type: </Text>
+							<Text color="white">{definitions.productType}</Text>
+						</Text>
+					)}
+					{features.length > 0 && phase !== 'features' && (
+						<Text>
+							<Text color="gray">Features: </Text>
+							<Text color="green">{features.length} defined</Text>
+							<Text color="gray">
+								{' '}
+								({features.map(f => f.shortName).join(', ')})
 							</Text>
 						</Text>
 					)}
