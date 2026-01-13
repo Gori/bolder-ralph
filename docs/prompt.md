@@ -97,7 +97,14 @@ When generating the final output:
 - Do not reorder sections.
 - Do not explain the template.
 
-The PRD should read as if it was written by a competent product engineer for another engineer.
+The PRD should read as if it was written by the best PM ever - one who has total faith in their developer.
+
+**Key principles:**
+- Focus on WHAT and WHY, never HOW
+- Trust the developer to figure out implementation details
+- No technical implementation details in features
+- Describe outcomes and user value, not code or architecture
+- A feature should say what it enables, not how it works internally
 
 ---
 

@@ -91,15 +91,20 @@ ${brainDump || 'None'}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Generate features for this product. Be CONCISE. Order by build priority.
+Generate features for this product. Write like the best PM ever - one who trusts their developer.
+
+Rules:
+- Focus on WHAT and WHY, never HOW
+- No implementation details (no "using X", "via Y", "with Z")
+- Describe user outcomes, not technical mechanisms
 
 For each feature:
-- shortName: 2-4 words, clear and specific (e.g., "User Auth", "Data Export", "Search Filters")
-- description: ONE sentence, what does it do?
-- purpose: ONE sentence, why is it needed?
-- userStories: 1-2 short user goals (e.g., "Save work in progress", "Filter by date")
+- shortName: 2-4 words (e.g., "User Auth", "Data Export", "Search")
+- description: ONE sentence - what can the user do?
+- purpose: ONE sentence - why does this matter?
+- userStories: 1-2 user goals (e.g., "Find items quickly", "Resume later")
 
-No fluff. No filler. Just the essentials.`,
+Order by build priority. Be concise.`,
 		schema: z.object({
 			features: z.array(
 				z.object({
@@ -152,13 +157,14 @@ Current feature to regenerate:
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Regenerate this feature. Keep it CONCISE:
-- shortName: 2-4 words
-- description: ONE sentence
-- purpose: ONE sentence
-- userStories: 1-2 short goals
+Regenerate this feature. Write like a PM who trusts their developer.
 
-No fluff.`,
+- Focus on WHAT and WHY, never HOW
+- No implementation details
+- shortName: 2-4 words
+- description: ONE sentence - what can the user do?
+- purpose: ONE sentence - why does this matter?
+- userStories: 1-2 user goals`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
@@ -205,13 +211,14 @@ New feature name provided by user: ${shortName}
 
 IMPORTANT: Always respond in English, regardless of the input language.
 
-Generate this feature. Keep it CONCISE:
-- shortName: 2-4 words
-- description: ONE sentence
-- purpose: ONE sentence
-- userStories: 1-2 short goals
+Generate this feature. Write like a PM who trusts their developer.
 
-No fluff.`,
+- Focus on WHAT and WHY, never HOW
+- No implementation details
+- shortName: 2-4 words
+- description: ONE sentence - what can the user do?
+- purpose: ONE sentence - why does this matter?
+- userStories: 1-2 user goals`,
 		schema: z.object({
 			shortName: z.string(),
 			description: z.string(),
