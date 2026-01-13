@@ -141,6 +141,7 @@ export default function CoreDefinitionsEditor({
 		const fieldInfo = fieldLabels[currentField];
 		return (
 			<CoreDefinitionSelector
+				key={currentField}
 				label={fieldInfo.label}
 				description={fieldInfo.description}
 				options={options[currentField]}
