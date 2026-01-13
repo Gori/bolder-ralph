@@ -122,7 +122,7 @@ Users see rendered docs as they write.
 | Variable         | Description         | Default              |
 | ---------------- | ------------------- | -------------------- |
 | `OPENAI_API_KEY` | Your OpenAI API key | (required)           |
-| `OPENAI_MODEL`   | Model to use        | `gpt-4.1-2025-04-14` |
+| `OPENAI_MODEL`   | Model to use        | `gpt-5.2-2025-12-11` |
 
 ### CLI Options
 

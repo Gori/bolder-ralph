@@ -12,7 +12,7 @@ import {
 	type PrdContent,
 } from './types.js';
 
-const model = openai(process.env['OPENAI_MODEL'] ?? 'gpt-4.1-2025-04-14');
+const model = openai(process.env['OPENAI_MODEL'] ?? 'gpt-5.2-2025-12-11');
 
 // Load system prompt from docs/prompt.md
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
