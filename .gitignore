@@ -1,5 +1,6 @@
 node_modules
 dist
+temp_auto_push.bat
 bin
-.env
-prd-output.md
+prd-output.md.gitignore
+temp_interactive_push.bat
