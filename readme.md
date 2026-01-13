@@ -86,6 +86,63 @@ Ralph generates PRDs focused on **what** and **why**, never **how**. Implementat
 | Constraints | Hard limits and rules |
 | Definition of done | Minimum viable outcome for v1 |
 
+<details>
+<summary><strong>Example PRD</strong></summary>
+
+```markdown
+# FocusFlow
+
+A desktop app that blocks distracting websites during work sessions.
+
+**Purpose:** Help remote workers maintain focus by removing the temptation to visit time-wasting sites.
+
+**Audience:** Remote workers and freelancers
+
+**Product Type:** macOS menu bar app
+
+---
+
+## Features
+
+### Block List
+Users can specify which websites to block during focus sessions.
+
+**User Stories:**
+- As a user, I want to add websites to my block list so that I can't access them during work
+- As a user, I want to import a pre-made block list so that I don't have to manually add common distractions
+- As a user, I want to remove sites from my block list so that I can adjust what's blocked
+
+### Focus Sessions
+Users can start timed focus sessions that activate blocking.
+
+**User Stories:**
+- As a user, I want to start a 25-minute focus session so that I can work using the Pomodoro technique
+- As a user, I want to set custom session lengths so that I can match my preferred work style
+- As a user, I want to see how much time is left so that I know when my break is coming
+
+---
+
+## Tech Stack
+- **Framework:** Electron
+- **Language:** TypeScript
+- **Storage:** SQLite
+
+## Non-Features
+- No mobile app
+- No team/enterprise features
+- No browser extension
+
+## Constraints
+- macOS only for v1
+- No account required
+- All data stored locally
+
+## Definition of Done
+Users can create a block list, start a focus session, and be prevented from accessing blocked sites until the session ends.
+```
+
+</details>
+
 ## Configuration
 
 | Variable | Default | Description |
