@@ -38,7 +38,7 @@ export default function Header() {
 			</Box>
 			<Box flexDirection="column" justifyContent="center">
 				<Gradient name="rainbow">
-					<BigText text="Ralph" font="chrome" />
+					<BigText text="Ralph" font="block" />
 				</Gradient>
 				<Text italic color="gray">
 					Turn your brain dump into a PRD
