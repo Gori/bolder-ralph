@@ -41,6 +41,16 @@ No templates. No forms. Just tell Ralph what you want to build, and he'll ask th
 
 ## Get Started
 
+**Option 1: Standalone executable (no Node.js required)**
+
+```bash
+npm install && npm run package:mac  # or package:linux, package:win
+export OPENAI_API_KEY=your-key
+./bin/bolder-ralph
+```
+
+**Option 2: Run with Node.js**
+
 ```bash
 npm install && npm run build
 cp .env.example .env  # add your OpenAI key

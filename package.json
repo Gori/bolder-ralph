@@ -10,7 +10,17 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
-		"test": "prettier --check . && xo && ava"
+		"test": "prettier --check . && xo && ava",
+		"package": "npm run build && pkg . --out-path bin",
+		"package:mac": "npm run build && pkg . --targets node18-macos-x64,node18-macos-arm64 --out-path bin",
+		"package:linux": "npm run build && pkg . --targets node18-linux-x64,node18-linux-arm64 --out-path bin",
+		"package:win": "npm run build && pkg . --targets node18-win-x64 --out-path bin"
+	},
+	"pkg": {
+		"scripts": "dist/**/*.js",
+		"assets": [
+			"docs/**/*"
+		]
 	},
 	"files": [
 		"dist"
@@ -40,6 +50,7 @@
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"ink-testing-library": "^3.0.0",
+		"pkg": "^5.8.1",
 		"prettier": "^2.8.7",
 		"ts-node": "^10.9.1",
 		"tsx": "^4.21.0",
